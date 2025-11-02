@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export const Player = ({initialName, symbol, isActive})=>{
+export const Player = ({initialName, symbol, isActive, onChangeName})=>{
     const [playerName, setPlayerName] = useState(initialName);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -11,6 +11,10 @@ export const Player = ({initialName, symbol, isActive})=>{
     
     const handleChange = (e) => {
         setPlayerName(e.target.value);
+        if (isEditing){
+        onChangeName(symbol, playerName);
+        }
+        
     }
 
    let editablePlayerName =  <span className="player-name">{playerName}</span>
